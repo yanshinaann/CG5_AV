@@ -58,7 +58,7 @@ public class DrawPanel extends JPanel implements ActionListener,
     @Override
     public void paint(Graphics g) {
         BufferedImage bi = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
-        w.draw((Graphics2D)bi.getGraphics(), sc, path);
+        w.draw((Graphics2D)bi.getGraphics(), sc);
         g.drawImage(bi, 0, 0, null);
     }
 
