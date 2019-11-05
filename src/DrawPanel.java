@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 
+import iPath.IPath;
 import math.Rectangle;
 import model.Field;
 import model.Puck;
@@ -36,6 +37,7 @@ public class DrawPanel extends JPanel implements ActionListener,
     private World w;
     private AbstractWorldTimer uwt;
     private Timer drawTimer;
+    private IPath path;
 
     public DrawPanel() {
         super();
@@ -56,7 +58,7 @@ public class DrawPanel extends JPanel implements ActionListener,
     @Override
     public void paint(Graphics g) {
         BufferedImage bi = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
-        w.draw((Graphics2D)bi.getGraphics(), sc);
+        w.draw((Graphics2D)bi.getGraphics(), sc, path);
         g.drawImage(bi, 0, 0, null);
     }
 
