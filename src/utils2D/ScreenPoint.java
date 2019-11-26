@@ -7,6 +7,14 @@ public class ScreenPoint {
      */
     private int i, j;
 
+    public void setI(int i) {
+        this.i = i;
+    }
+
+    public void setJ(int j) {
+        this.j = j;
+    }
+
     /**
      * Создаёт экранную точку.
      * @param i Номер пикселя по горизонтальной оси (X)

@@ -28,7 +28,6 @@ import javax.swing.Timer;
 
 
 /**
- *
  * @author Alexey
  */
 public class DrawPanel extends JPanel implements ActionListener,
@@ -38,6 +37,7 @@ public class DrawPanel extends JPanel implements ActionListener,
     private AbstractWorldTimer uwt;
     private Timer drawTimer;
     private IPath path;
+    private ScreenPoint sp;
 
     public DrawPanel() {
         super();
@@ -46,6 +46,7 @@ public class DrawPanel extends JPanel implements ActionListener,
                 0.1, 9.8);
         w = new World(new Puck(1, 0.3, f.getRectangle().getCenter()), f);
         sc = new ScreenConverter(f.getRectangle(), 450, 450);
+        sp = new ScreenPoint(2, 5);
         this.addMouseListener(this);
         this.addMouseMotionListener(this);
         this.addMouseWheelListener(this);
@@ -58,10 +59,9 @@ public class DrawPanel extends JPanel implements ActionListener,
     @Override
     public void paint(Graphics g) {
         BufferedImage bi = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
-        w.draw((Graphics2D)bi.getGraphics(), sc);
+        w.draw((Graphics2D) bi.getGraphics(), sc);
         g.drawImage(bi, 0, 0, null);
     }
-
 
 
     @Override
@@ -76,12 +76,12 @@ public class DrawPanel extends JPanel implements ActionListener,
 
     @Override
     public void mousePressed(MouseEvent e) {
-        int direction = 0;
-        if (e.getButton() == MouseEvent.BUTTON1)
-            direction = 1;
-        else if (e.getButton() == MouseEvent.BUTTON3)
-            direction = -1;
-        w.getExternalForce().setValue(10*direction);
+//        int direction = 0;
+//        if (e.getButton() == MouseEvent.BUTTON1)
+//            direction = 1;
+//        else if (e.getButton() == MouseEvent.BUTTON3)
+//            direction = -1;
+//        w.getExternalForce().setValue(10*direction);
     }
 
     @Override
@@ -101,26 +101,32 @@ public class DrawPanel extends JPanel implements ActionListener,
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        w.getExternalForce().setLocation(sc.s2r(new ScreenPoint(e.getX(), e.getY())));
+        // w.getExternalForce().setLocation(sc.s2r(new ScreenPoint(e.getX(), e.getY())));
+        if (sp == null)
+            return;
+        sp.setI( e.getX());
+        sp.setJ( e.getY());
+        repaint();
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        w.getExternalForce().setLocation(sc.s2r(new ScreenPoint(e.getX(), e.getY())));
+        //  w.getExternalForce().setLocation(sc.s2r(new ScreenPoint(e.getX(), e.getY())));
     }
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
-        double oldMu = w.getF().getMu();
-        oldMu = Math.round(oldMu*100 + e.getWheelRotation())*0.01;
+//        double oldMu = w.getF().getMu();
+//        oldMu = Math.round(oldMu*100 + e.getWheelRotation())*0.01;
+//
+//        if (oldMu < -1)
+//            oldMu = -1;
+//        else if (oldMu > 1)
+//            oldMu = 1;
+//        else if (Math.abs(oldMu) < 0.005)
+//            oldMu = 0;
+//        w.getF().setMu(oldMu);
+//    }
 
-        if (oldMu < -1)
-            oldMu = -1;
-        else if (oldMu > 1)
-            oldMu = 1;
-        else if (Math.abs(oldMu) < 0.005)
-            oldMu = 0;
-        w.getF().setMu(oldMu);
     }
-
 }
