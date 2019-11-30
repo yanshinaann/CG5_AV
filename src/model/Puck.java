@@ -1,6 +1,6 @@
 package model;
 
-import math.Vector2;
+import math.ScreenPoints;
 
 /**
  *
@@ -9,9 +9,9 @@ import math.Vector2;
  */
 public class Puck {
     private double m, r;
-    private Vector2 position;
-    private Vector2 velocity;
-    private Vector2 acceleration;
+    private ScreenPoints position;
+    private ScreenPoints velocity;
+    private ScreenPoints acceleration;
 
     /**
      * Создаём шайбу с нулевой скоростью и ускорением
@@ -19,19 +19,19 @@ public class Puck {
      * @param r Радиус шайбы [м]
      * @param position Положение шайбы относительно начала координат [м]
      */
-    public Puck(double m, double r, Vector2 position) {
+    public Puck(double m, double r, ScreenPoints position) {
         this.m = m;
         this.r = r;
         this.position = position;
-        this.velocity = new Vector2(0, 0);
-        this.acceleration = new Vector2(0, 0);
+        this.velocity = new ScreenPoints(0, 0);
+        this.acceleration = new ScreenPoints(0, 0);
     }
 
-    public Vector2 getAcceleration() {
+    public ScreenPoints getAcceleration() {
         return acceleration;
     }
 
-    public void setAcceleration(Vector2 acceleration) {
+    public void setAcceleration(ScreenPoints acceleration) {
         this.acceleration = acceleration;
     }
 
@@ -43,11 +43,11 @@ public class Puck {
         this.m = m;
     }
 
-    public Vector2 getPosition() {
+    public ScreenPoints getPosition() {
         return position;
     }
 
-    public void setPosition(Vector2 position) {
+    public void setPosition(ScreenPoints position) {
         this.position = position;
     }
 
@@ -59,11 +59,11 @@ public class Puck {
         this.r = r;
     }
 
-    public Vector2 getVelocity() {
+    public ScreenPoints getVelocity() {
         return velocity;
     }
 
-    public void setVelocity(Vector2 velocity) {
+    public void setVelocity(ScreenPoints velocity) {
         this.velocity = velocity;
     }
 

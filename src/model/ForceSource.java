@@ -1,6 +1,6 @@
 package model;
 
-import math.Vector2;
+import math.ScreenPoints;
 
 /**
  *
@@ -8,19 +8,19 @@ import math.Vector2;
  * @author Alexey
  */
 public class ForceSource {
-    private Vector2 location;
+    private ScreenPoints location;
     private double value;
 
-    public ForceSource(Vector2 location) {
+    public ForceSource(ScreenPoints location) {
         this.location = location;
         value = 0;
     }
 
-    public Vector2 getLocation() {
+    public ScreenPoints getLocation() {
         return location;
     }
 
-    public void setLocation(Vector2 location) {
+    public void setLocation(ScreenPoints location) {
         this.location = location;
     }
 
@@ -37,9 +37,9 @@ public class ForceSource {
      * @param p Точка, для которой производят вычисления
      * @return Вектор силы
      */
-    public Vector2 getForceAt(Vector2 p) {
+    public ScreenPoints getForceAt(ScreenPoints p) {
         if (Math.abs(value) < 1e-12)
-            return new Vector2(0, 0);
+            return new ScreenPoints(0, 0);
         return location.add(p.mul(-1)).normolized().mul(value);
     }
 }

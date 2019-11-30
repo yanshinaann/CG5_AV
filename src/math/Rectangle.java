@@ -17,7 +17,7 @@ public class Rectangle {
      * @param topLeft Верхняя левая точка
      * @param bottomRight Нижняя правая точка
      */
-    public Rectangle(Vector2 topLeft, Vector2 bottomRight) {
+    public Rectangle(ScreenPoints topLeft, ScreenPoints bottomRight) {
         this(
                 Math.min(topLeft.getX(), bottomRight.getX()),
                 Math.max(topLeft.getY(), bottomRight.getY()),
@@ -64,23 +64,23 @@ public class Rectangle {
         return height;
     }
 
-    public boolean isInside(Vector2 p) {
+    public boolean isInside(ScreenPoints p) {
         return getLeft() < p.getX() && p.getX() < getRight() && getBottom() < p.getY() && p.getY() < getTop();
     }
 
-    public Vector2 getCenter() {
-        return new Vector2((getLeft() + getRight()) * 0.5, (getTop() + getBottom()) * 0.5);
+    public ScreenPoints getCenter() {
+        return new ScreenPoints((getLeft() + getRight()) * 0.5, (getTop() + getBottom()) * 0.5);
     }
 
-    public Vector2 getSize() {
-        return new Vector2(getWidth(), getHeight());
+    public ScreenPoints getSize() {
+        return new ScreenPoints(getWidth(), getHeight());
     }
 
-    public Vector2 getTopLeft() {
-        return new Vector2(left, top);
+    public ScreenPoints getTopLeft() {
+        return new ScreenPoints(left, top);
     }
 
-    public Vector2 getBottomRight() {
-        return new Vector2(left + width, top - height);
+    public ScreenPoints getBottomRight() {
+        return new ScreenPoints(left + width, top - height);
     }
 }

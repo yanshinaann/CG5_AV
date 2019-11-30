@@ -1,17 +1,11 @@
 package iPath;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
-import math.Vector2;
 import model.Field;
-import model.Puck;
 import utils2D.ScreenPoint;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
-import java.util.Map;
-
-import utils2D.ScreenConverter;
 
 public class Circle implements IPath {
     double angle;
@@ -39,10 +33,10 @@ public class Circle implements IPath {
     }
 
     @Override
-    public Vector2 getStartPoint(Field f) {
-        Vector2 v2 = new Vector2(0, 0);
-        v2.setX(f.getRectangle().getCenter().getX() + f.getRectangle().getCenter().getX() / 2 * Math.cos(angle));
-        v2.setY(f.getRectangle().getCenter().getY() + f.getRectangle().getCenter().getX() / 2 * Math.sin(angle));
+    public ScreenPoint getStartPoint(Field f, ArrayList<ScreenPoint> sourcePoints) {
+        ScreenPoint v2 = new ScreenPoint(0, 0);
+        v2.setI((int)(f.getRectangle().getCenter().getX() + f.getRectangle().getCenter().getX() / 2 * Math.cos(angle)));
+        v2.setJ((int)(f.getRectangle().getCenter().getY() + f.getRectangle().getCenter().getX() / 2 * Math.sin(angle)));
 
         return v2;
     }

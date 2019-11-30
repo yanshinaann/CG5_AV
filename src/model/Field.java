@@ -7,6 +7,9 @@ package model;
 
 
 import math.Rectangle;
+import utils2D.ScreenPoint;
+
+import java.util.ArrayList;
 
 /**
  *
@@ -16,6 +19,15 @@ import math.Rectangle;
 public class Field {
     private Rectangle rectangle;
     private double mu, g;
+    ArrayList<ScreenPoint> soursePoints = new ArrayList<>();
+
+    public ArrayList<ScreenPoint> getSoursePoints() {
+        return soursePoints;
+    }
+
+    public void setSoursePoints(ArrayList<ScreenPoint> soursePoints) {
+        this.soursePoints = soursePoints;
+    }
 
     /**
      * Создаёт игровое поле
@@ -23,10 +35,11 @@ public class Field {
      * @param mu Коэффициент трения
      * @param g Ускорение свободного падения
      */
-    public Field(Rectangle rectangle, double mu, double g) {
+    public Field(Rectangle rectangle, double mu, double g, ArrayList soursePoints) {
         this.rectangle = rectangle;
         this.mu = mu;
         this.g = g;
+        this.soursePoints = soursePoints;
     }
 
     public double getG() {

@@ -1,11 +1,9 @@
 package iPath;
 
-import math.Vector2;
 import model.Field;
 import utils2D.ScreenPoint;
 
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 
 public class Sin implements IPath {
@@ -45,10 +43,10 @@ public class Sin implements IPath {
     }
 
     @Override
-    public Vector2 getStartPoint(Field f) {
-        Vector2 v2 = new Vector2(0, 0);
-        v2.setX(angel + (f.getRectangle().getLeft() + f.getRectangle().getWidth() * Math.sin(angel)));
-        v2.setY((f.getRectangle().getWidth() / 2 - f.getRectangle().getHeight() / 4 * Math.sin(angel * 10)));
+    public ScreenPoint getStartPoint(Field f, ArrayList<ScreenPoint> sourcePoints) {
+        ScreenPoint v2 = new ScreenPoint(0, 0);
+        v2.setI((int)(angel + (f.getRectangle().getLeft() + f.getRectangle().getWidth() * Math.sin(angel))));
+        v2.setJ((int)(f.getRectangle().getWidth() / 2 - f.getRectangle().getHeight() / 4 * Math.sin(angel * 10)));
         if (isPoint(v2, f)) {
             angel = 0;
             // v2.setX(f.getRectangle().getRight()-f.getRectangle().getWidth()/2 * Math.sin(angel));
@@ -57,8 +55,8 @@ public class Sin implements IPath {
         return v2;
     }
 
-    public boolean isPoint(Vector2 v2, Field f) {
-        if ((v2.getX() > f.getRectangle().getRight()) || (v2.getX() < f.getRectangle().getLeft())) {
+    public boolean isPoint(ScreenPoint v2, Field f) {
+        if ((v2.getI() > f.getRectangle().getRight()) || (v2.getI() < f.getRectangle().getLeft())) {
             return true;
         }
         return false;

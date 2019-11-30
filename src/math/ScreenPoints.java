@@ -9,7 +9,7 @@ package math;
  * Описывает координаты реальной точки.
  * @author Alexey
  */
-public class Vector2 {
+public class ScreenPoints {
     private double x, y;
 
     /**
@@ -17,7 +17,7 @@ public class Vector2 {
      * @param x x-составляющая (горизонтальная ось)
      * @param y y-составляющая (вертикальная ось)
      */
-    public Vector2(double x, double y) {
+    public ScreenPoints(double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -43,8 +43,8 @@ public class Vector2 {
      * @param other другой вектор, с которым складывается текущий
      * @return новый вектор
      */
-    public Vector2 add(Vector2 other) {
-        return new Vector2(x + other.x, y + other.y);
+    public ScreenPoints add(ScreenPoints other) {
+        return new ScreenPoints(x + other.x, y + other.y);
     }
 
     /**
@@ -52,8 +52,8 @@ public class Vector2 {
      * @param n число, на которое умножается вектор
      * @return новый вектор
      */
-    public Vector2 mul(double n) {
-        return new Vector2((x * n), y * n);
+    public ScreenPoints mul(double n) {
+        return new ScreenPoints((x * n), y * n);
     }
 
     /**
@@ -61,11 +61,11 @@ public class Vector2 {
      * Если вектор нулевой, то возвращает новый нулевой вектор
      * @return Получившийся вектор
      */
-    public Vector2 normolized() {
+    public ScreenPoints normolized() {
         double len = length();
         if (len < 1e-12) /*Да, здесь не по модулю, т.к. корень не будет отрицательным.*/
-            return new Vector2(0, 0);
-        return new Vector2(x / len, y / len);
+            return new ScreenPoints(0, 0);
+        return new ScreenPoints(x / len, y / len);
     }
 
     /**

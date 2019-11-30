@@ -1,7 +1,7 @@
 package utils2D;
 
 import math.Rectangle;
-import math.Vector2;
+import math.ScreenPoints;
 
 public class ScreenConverter {
     private double xr, yr, wr, hr;
@@ -34,7 +34,7 @@ public class ScreenConverter {
      * @param p Точка в реальных координатах
      * @return Точка в экранных координатах.
      */
-    public ScreenPoint r2s(Vector2 p) {
+    public ScreenPoint r2s(ScreenPoints p) {
         int i = (int)((p.getX() - xr)*ws/wr);
         int j = (int)((yr - p.getY())*hs/hr);
         return new ScreenPoint(i, j);
@@ -45,10 +45,10 @@ public class ScreenConverter {
      * @param p Точка в экранных координатах
      * @return Точка в реальных координатах
      */
-    public Vector2 s2r(ScreenPoint p) {
+    public ScreenPoints s2r(ScreenPoint p) {
         double x = xr + p.getI()*wr/ws;
         double y = yr - p.getJ()*hr/hs;
-        return new Vector2(x, y);
+        return new ScreenPoints(x, y);
     }
 
     /**
@@ -58,7 +58,7 @@ public class ScreenConverter {
      */
     public int r2sDistanceH(double d) {
         /*Можно написать проще*/
-        return r2s(new Vector2(d, 0)).getI() - r2s(new Vector2(0, 0)).getI();
+        return r2s(new ScreenPoints(d, 0)).getI() - r2s(new ScreenPoints(0, 0)).getI();
     }
 
     /**
@@ -68,7 +68,7 @@ public class ScreenConverter {
      */
     public int r2sDistanceV(double d) {
         /*Можно написать проще*/
-        return r2s(new Vector2(0, 0)).getJ() - r2s(new Vector2(0, d)).getJ();
+        return r2s(new ScreenPoints(0, 0)).getJ() - r2s(new ScreenPoints(0, d)).getJ();
     }
 
     public double getHr() {

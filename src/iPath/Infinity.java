@@ -1,17 +1,14 @@
 package iPath;
 
-import math.Vector2;
 import model.Field;
 import utils2D.ScreenPoint;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-import static java.lang.Double.NaN;
-
 public class Infinity implements IPath {
     private double angel;
-    Vector2 v2 = new Vector2(0, 0);
+    ScreenPoint v2 = new ScreenPoint(0, 0);
     double p =0;
 
     @Override
@@ -25,7 +22,7 @@ public class Infinity implements IPath {
     }
 
     @Override
-    public Vector2 getStartPoint(Field f) {
+    public ScreenPoint getStartPoint(Field f, ArrayList<ScreenPoint> sourcePoints) {
         //  Vector2 v2 = new Vector2(0, 0);
 
         double c = 3.5;
@@ -34,17 +31,17 @@ public class Infinity implements IPath {
        p= Math.sqrt(Math.tan(Math.PI / 4 -angel));
        if (Double.isNaN(p)) {
            p = Math.sqrt(Math.tan(Math.PI / 4 + angel+Math.PI/2));
-           v2.setX(f.getRectangle().getCenter().getX() + c * Math.sqrt(2) * (p + Math.pow(p, 3)) / (1 + Math.pow(p, 4)));
+           v2.setI((int)(f.getRectangle().getCenter().getX() + c * Math.sqrt(2) * (p + Math.pow(p, 3)) / (1 + Math.pow(p, 4))));
        } else {
            p= Math.sqrt(Math.tan(Math.PI / 4 +angel));
-           v2.setX(f.getRectangle().getCenter().getX() - c * Math.sqrt(2) * (p + Math.pow(p, 3)) / (1 + Math.pow(p, 4)));
+           v2.setJ((int)(f.getRectangle().getCenter().getX() - c * Math.sqrt(2) * (p + Math.pow(p, 3)) / (1 + Math.pow(p, 4))));
        }
 
-        if (v2.getX() < f.getRectangle().getCenter().getX())
-            v2.setX(f.getRectangle().getCenter().getX() - c * Math.sqrt(2) * (p + Math.pow(p, 3)) / (1 + Math.pow(p, 4)));
+        if (v2.getI() < f.getRectangle().getCenter().getX())
+            v2.setJ((int)(f.getRectangle().getCenter().getX() - c * Math.sqrt(2) * (p + Math.pow(p, 3)) / (1 + Math.pow(p, 4))));
         else
-            v2.setX(f.getRectangle().getCenter().getX() + c * Math.sqrt(2) * (p + Math.pow(p, 3)) / (1 + Math.pow(p, 4)));
-        v2.setY(3+c * Math.sqrt(2) * (p - Math.pow(p, 3)) / (1 + Math.pow(p, 4)));
+            v2.setI((int)(f.getRectangle().getCenter().getX() + c * Math.sqrt(2) * (p + Math.pow(p, 3)) / (1 + Math.pow(p, 4))));
+        v2.setJ((int)(3+c * Math.sqrt(2) * (p - Math.pow(p, 3)) / (1 + Math.pow(p, 4))));
 
 
 
